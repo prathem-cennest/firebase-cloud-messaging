@@ -14,4 +14,13 @@ messaging.usePublicVapidKey(
 	// Project Settings => Cloud Messaging => Web Push certificates
   "BHh-_J7I_71EkBfP7m7rBpVRoVk6ekkx56rtfVVMP8_Uq42-usvGEKbDA8XGWRg0LIEtGLSpSjXhl4RRcCAtYXA"
 );
+messaging.requestPermission()
+      .then(async function() {
+              const token = await messaging.getToken();
+      })
+      .catch(function(err) {
+        console.log("Unable to get permission to notify.", err);
+      });
+    navigator.serviceWorker.addEventListener("message", (message) => console.log(message));
+  
 export { messaging };
